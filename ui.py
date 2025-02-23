@@ -52,6 +52,7 @@ class QuizInterface:
         # otherwise it would be executed until the screen gets clicked
 
     def get_next_question(self):
+        self.canvas.config(bg="white")
         q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.question_text, text=q_text)
     def update_score(self):
@@ -59,16 +60,21 @@ class QuizInterface:
 
     def correct(self):
         if self.quiz.check_answer("True"):
+            self.canvas.config(bg="green")
             messagebox.showinfo("result", "You got it!")
+
         else:
+            self.canvas.config(bg="red")
             messagebox.showinfo("result", "Try next time!")
         self.update_score()
         self.get_next_question()
 
     def wrong(self):
         if self.quiz.check_answer("False"):
+            self.canvas.config(bg="green")
             messagebox.showinfo("result", "You got it!")
         else:
+            self.canvas.config(bg="red")
             messagebox.showinfo("result", "Try next time!")
         self.update_score()
         self.get_next_question()
